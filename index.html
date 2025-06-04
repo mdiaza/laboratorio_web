@@ -1,41 +1,138 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Web Sencilla</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Frases Bonitas</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #fcd3e1, #ffe0ec);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    #loveBtn {
+      background-color: rgba(255, 105, 180, 0.85);
+      border: none;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      font-size: 36px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      z-index: 2;
+      transition: transform 0.3s ease;
+    }
+
+    #loveBtn:hover {
+      transform: scale(1.1);
+    }
+
+    .phrase {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 12px 24px;
+      border-radius: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      color: #d62872;
+      font-weight: bold;
+      font-size: 20px;
+      max-width: 80%;
+      text-align: center;
+      opacity: 0;
+      animation: fadeSlideIn 0.8s forwards;
+      z-index: 1;
+    }
+
+    @keyframes fadeSlideIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Bienvenido a Mi Página Web -Merly Díaz </h1>
-    </header>
 
-    <nav>
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#acerca">Acerca de</a></li>
-            <li><a href="#contacto">Contactáctanos</a></li>
-        </ul>
-    </nav>
+  <button id="loveBtn">❤️</button>
 
-    <section id="inicio">
-        <h2>Inicio</h2>
-        <p>Esta es una página web sencilla hecha con HTML y CSS.</p>
-    </section>
+  <script>
+    const phrases = [
+      "Eres guapo.",
+      "Tienes una mirada que destaca.",
+      "Tu sonrisa tiene algo especial.",
+      "Inteligente y seguro",
+	  "Eres ahorrador",
+	  "Tu amor tiene la estructura más firme de mi vida",
+      "Lindo por dentro y por fuera.",
+      "Me encanta tu forma de pensar.",
+      "Tienes estilo y mucha personalidad.",
+      "Eres estricto, pero también muy dulce.",
+      "Brillas con luz propia.",
+	  "Te gusta papa amarilla",
+	  "Te amamos con Motta.",
+	  "Te gusta el chocolate",
+      "Eres creativo",
+      "Eres honesto",
+	  "Adoro tus ojos y tu voz",
+	  "Me haces muy feliz",
+      "Encantas sin intentarlo.",
+      "Naturalmente lindo.",
+      "Siempre con buen gusto.",
+      "Te amo Carlos H. Nanzer.",
+      "Eres increíble.",
+      "Eres único.",
+	  "Te gusta tu queso Paria de Puno",
+	  "Te gusta papa amarilla",
+	  "Eres la columna que sostiene mis días y la viga que me da fuerza",
+	  "Eres el plano prfecto de mis días felices",
+	  "Nuestro amor no necesita render, porque ya es perfecto",
+	  "No necesito layout cuando tú haces que mi modelo se vea perfecto desde cualquier vista",
+	  "Eres ese bloque dinámico que encaja perfecto en todos mis espacios",
+	  "Desde que estás en mi vida, deje de ser 2D , ahora todo tiene profundidad y sentido en 3D",
+	  "Tú eres mi ViewCube contigo me ubico, me oriento y encuentro mi mejor ángulo",
+	  "Me modelaste desde cero y lograste que incluso mis falos se vieran como detalles de diseño"    ];
 
-    <section id="acerca">
-        <h2>Acerca de</h2>
-        <p>Este es un sitio web básico para demostrar cómo crear una página web.</p>
-    </section>
+    const loveBtn = document.getElementById("loveBtn");
+    const duration = 30000; // 35 segundos
 
-    <section id="contacto">
-        <h2>Contacto</h2>
-        <p>Si tienes alguna pregunta, contáctame a través del correo electrónico: ejemplo@correo.com</p>
-    </section>
+    loveBtn.addEventListener("click", () => {
+      const phrase = phrases[Math.floor(Math.random() * phrases.length)];
+      const phraseDiv = document.createElement("div");
+      phraseDiv.className = "phrase";
+      phraseDiv.textContent = phrase;
 
-    <footer>
-        <p>&copy; 2024 Mi Página Web. Todos los derechos reservados.</p>
-    </footer>
+      // Posición completamente aleatoria dentro del viewport
+      const margin = 10; // 10% de margen
+      const randomTop = Math.random() * (80 - margin) + margin;
+      const randomLeft = Math.random() * (80 - margin) + margin;
+
+      phraseDiv.style.top = `${randomTop}%`;
+      phraseDiv.style.left = `${randomLeft}%`;
+      phraseDiv.style.transform = "translate(-50%, -50%)";
+
+      document.body.appendChild(phraseDiv);
+
+      // Eliminar después de 35 segundos
+      setTimeout(() => {
+        phraseDiv.remove();
+      }, duration);
+    });
+  </script>
+
 </body>
 </html>
+
